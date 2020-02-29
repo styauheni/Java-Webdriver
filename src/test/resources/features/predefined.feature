@@ -234,7 +234,7 @@ Feature: Smoke steps
     And I click on element using JavaScript with xpath "//option[@value='Belarus']"
     And I click on element using JavaScript with xpath "//*[@name='gender'][@value='male']"
     And I click on element using JavaScript with xpath "//input[@name='allowedToContact']"
-    And I type "Old Street" into element with xpath "//textarea[@id='address']"
+    And I type "New Way" into element with xpath "//textarea[@id='address']"
     And I click on element using JavaScript with xpath "//select[@name='carMake']/*[@value='Ford']"
     And I click on element using JavaScript with xpath "//button[@id='thirdPartyButton']"
     And I accept alert
