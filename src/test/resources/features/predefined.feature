@@ -132,8 +132,146 @@ Feature: Smoke steps
     Then I wait for element with xpath "//div[@class='search-results']" to be present
     And element with xpath "//div[@class='search-results']" should contain text "Bootcamp"
     
+  @predefined14 @homework3
+  Scenario: Validate responsive UI behavior
+    Given I open url "https://skryabin.com/market/quote.html"
+    Then I should see page title contains "Quote"
+    When I resize window to 1200 and 1024
+    Then element with xpath "//*[@id='location']" should be present
+    When I resize window to 700 and 1024
+    Then element with xpath "//*[@id='location']" should be present
+    When I resize window to 400 and 1024
+    Then element with xpath "//*[@id='location']" should not be displayed
+
+  @predefined15 @homework3
+  Scenario: Validate Username field
+     Given I open url "https://skryabin.com/market/quote.html"
+     Then I should see page title contains "Quote"
+     When I type "y" into element with xpath "//input[@name='username']"
+     And I click on element with xpath "//input[@id='password']"
+     Then element with xpath "//*[@id='username-error']" should be displayed
+     When I clear element with xpath "//input[@name='username']"
+     And I type "YS" into element with xpath "//input[@name='username']"
+     And I click on element with xpath "//input[@id='password']"
+     Then element with xpath "//*[@id='username-error']" should not be displayed
+
+  @predefined16 @homework3
+  Scenario: Validate Email field
+    Given I open url "https://skryabin.com/market/quote.html"
+    Then I should see page title contains "Quote"
+    When I type "email" into element with xpath "//input[@name='email']"
+    And I click on element with xpath "//input[@id='password']"
+    Then element with xpath "//label[@id='email-error']" should be displayed
+    When I clear element with xpath "//input[@name='email']"
+    And I type "email@test.com" into element with xpath "//input[@name='email']"
+    And I click on element with xpath "//input[@id='password']"
+    Then element with xpath "//label[@id='email-error']" should not be displayed
+
+  @predefined17 @homework3
+  Scenario: Validate Password fields
+    Given I open url "https://skryabin.com/market/quote.html"
+    Then I should see page title contains "Quote"
+    Then element with xpath "//input[@id='confirmPassword']" should be disabled
+    When I type "1234" into element with xpath "//input[@id='password']"
+    And I click on element with xpath "//input[@id='confirmPassword']"
+    Then element with xpath "//label[@id='password-error']" should be displayed
+    When I clear element with xpath "//input[@id='password']"
+    And I type "12345" into element with xpath "//input[@id='password']"
+    And I click on element with xpath "//input[@id='confirmPassword']"
+    Then element with xpath "//label[@id='password-error']" should not be displayed
+    When I type "01234" into element with xpath "//input[@id='confirmPassword']"
+    And I click on element with xpath "//input[@name='phone']"
+    Then element with xpath "//label[@id='confirmPassword-error']" should be displayed
+    When I clear element with xpath "//input[@id='confirmPassword']"
+    And I type "12345" into element with xpath "//input[@id='confirmPassword']"
+    Then element with xpath "//label[@id='confirmPassword-error']" should not be displayed
+
+  @predefined18 @homework3
+  Scenario: Validate Name field
+    Given I open url "https://skryabin.com/market/quote.html"
+    Then I should see page title contains "Quote"
+    When I click on element with xpath "//input[@id='name']"
+    Then element with xpath "//div[@role='dialog']" should be displayed
+    When I type "T" into element with xpath "//input[@id='firstName']"
+    And I type "J" into element with xpath "//input[@id='middleName']"
+    And I type "Max" into element with xpath "//input[@id='lastName']"
+    And I click on element using JavaScript with xpath "//span[contains(text(),'Save')]"
+    Then element with xpath "//input[@id='name'][@value='T J Max']" should be present
+
+  @predefined19 @homework3
+  Scenario: Validate accepting privacy policy
+    Given I open url "https://skryabin.com/market/quote.html"
+    Then I should see page title contains "Quote"
+    When I click on element using JavaScript with xpath "//button[@id='formSubmit']"
+    Then element with xpath "//label[@id='agreedToPrivacyPolicy-error']" should be displayed
+    When I click on element using JavaScript with xpath "//input[@name='agreedToPrivacyPolicy']"
+    Then element with xpath "//label[@id='agreedToPrivacyPolicy-error']" should not be displayed
+
+  @predefined20 @homework3
+  Scenario: non-required fields
+    Given I open url "https://skryabin.com/market/quote.html"
+    Then I should see page title contains "Quote"
+    When I type "123456789" into element with xpath "//input[@name='phone']"
+    And I click on element using JavaScript with xpath "//option[@value='Belarus']"
+    And I click on element using JavaScript with xpath "//*[@name='gender'][@value='male']"
+    And I click on element using JavaScript with xpath "//input[@name='allowedToContact']"
+    And I type "Old Street" into element with xpath "//textarea[@id='address']"
+    And I click on element using JavaScript with xpath "//select[@name='carMake']/*[@value='Ford']"
+    And I click on element using JavaScript with xpath "//button[@id='thirdPartyButton']"
+    And I accept alert
+    And I click on element with xpath "//input[@id='dateOfBirth']"
+    Then I click on element with xpath "//*[@data-handler='selectMonth']"
+    When I click on element with xpath "//option[contains(text(),'Feb')]"
+    And I click on element with xpath "//option[@value='1917']"
+    And I click on element with xpath "//a[contains(text(),'28')]"
+    Then element with xpath "//input[@id='dateOfBirth'][contains(@class,'ng-touched')]" should be displayed
+
+  @predefined21 @homework3
+  Scenario: Submit form
+    Given I open url "https://skryabin.com/market/quote.html"
+    Then I should see page title contains "Quote"
+    When I type "123456789" into element with xpath "//input[@name='phone']"
+    And I click on element using JavaScript with xpath "//option[@value='Belarus']"
+    And I click on element using JavaScript with xpath "//*[@name='gender'][@value='male']"
+    And I click on element using JavaScript with xpath "//input[@name='allowedToContact']"
+    And I type "Old Street" into element with xpath "//textarea[@id='address']"
+    And I click on element using JavaScript with xpath "//select[@name='carMake']/*[@value='Ford']"
+    And I click on element using JavaScript with xpath "//button[@id='thirdPartyButton']"
+    And I accept alert
+    And I click on element with xpath "//input[@id='dateOfBirth']"
+    Then I click on element with xpath "//*[@data-handler='selectMonth']"
+    When I click on element with xpath "//option[contains(text(),'Feb')]"
+    And I click on element with xpath "//option[@value='1917']"
+    And I click on element with xpath "//a[contains(text(),'28')]"
+    When I type "YS" into element with xpath "//input[@name='username']"
+    And I click on element with xpath "//input[@id='password']"
+    And I type "email@test.com" into element with xpath "//input[@name='email']"
+    And I click on element with xpath "//input[@id='password']"
+    And I type "12345" into element with xpath "//input[@id='password']"
+    And I type "12345" into element with xpath "//input[@id='confirmPassword']"
+    When I click on element with xpath "//input[@id='name']"
+    Then element with xpath "//div[@role='dialog']" should be displayed
+    When I type "T" into element with xpath "//input[@id='firstName']"
+    And I type "J" into element with xpath "//input[@id='middleName']"
+    And I type "Max" into element with xpath "//input[@id='lastName']"
+    And I click on element using JavaScript with xpath "//span[contains(text(),'Save')]"
+    And I click on element using JavaScript with xpath "//input[@name='agreedToPrivacyPolicy']"
+    And I click on element using JavaScript with xpath "//button[@id='formSubmit']"
+    Then element with xpath "//b[@name='username']" should contain text "YS"
+    Then element with xpath "//b[@name='email']" should contain text "email@"
+    Then element with xpath "//b[@name='firstName']" should contain text "T"
+    Then element with xpath "//b[@name='middleName']" should contain text "J"
+    Then element with xpath "//b[@name='lastName']" should contain text "Max"
+    Then element with xpath "//b[@name='name']" should contain text "T J Max"
+    Then element with xpath "//b[@name='password']" should not contain text "12345"
+
+
+
 
     
+
+
+
     
 
 
