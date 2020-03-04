@@ -9,7 +9,10 @@ Feature: Smoke steps
     When I type "Behavior Driven Development" into element with xpath "//input[@name='q']"
     When I click on element using JavaScript with xpath "(//input[@name='btnK'])[1]"
     Then I wait for element with xpath "//*[@id='res']" to be present
-    Then element with xpath "//*[@id='res']" should contain text "Cucumber"
+#    The I wait for element with xpath "//*[@id='res']" to be present
+#    Then I wait for element with xpath "//*[@id='resres']" to be present
+#    Then element with xpath "//*[@id='res']" should contain text "Cucumbr"
+#    Then element with xpath "//*[@id='res']" should have text as "<Cucumber>"
 
   @predefined2
   Scenario: Predefined steps for Bing
@@ -100,7 +103,7 @@ Feature: Smoke steps
     Then element with xpath "//*[@id='title-query']" should be present
     When I type "Behavior Driven Development" into element with xpath "//*[@id='title-query']"
     Then I wait for element with xpath "//ul[@class='mdl-list']" to be present
-    Then I wait for 2 sec
+    Then I wait for 5 sec
     Then element with xpath "//ul[@class='mdl-list']" should contain text "Cucumber"
 
   @predefined11
@@ -265,9 +268,27 @@ Feature: Smoke steps
     Then element with xpath "//b[@name='name']" should contain text "T J Max"
     Then element with xpath "//b[@name='password']" should not contain text "12345"
 
+  @testCase
+  Scenario: Username
+    Given I open url "https://skryabin.com/market/quote.html"
+    Then I type "a" into element with xpath "//*[@name='username']"
+    When I click on element with xpath "//button[@id='formSubmit']"
+    And I clear element with xpath "//*[@name='username']"
 
+  @testCase
+#    InvalidElementState
+  Scenario: Username
+    Given I open url "https://skryabin.com/market/quote.html"
+    Then I type "a" into element with xpath "//*[@name='username']"
+    When I click on element with xpath "//button[@id='formSubmit']"
+    And I clear element with xpath "//*[@name='username']"
 
-
+  @testCase3
+#    TimeoutExeption
+  Scenario: field
+    Given I open url "https://skryabin.com/market/quote.html"
+    When I click on element with xpath "//input[@name='username']"
+    And I wait for element with xpath "//div[@aria-describedby='dialog']" to be present
     
 
 
