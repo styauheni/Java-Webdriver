@@ -6,6 +6,7 @@ import cucumber.api.java.en.Given;
 import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class JavaStepsDefs {
     @Given("I say Hello World.")
@@ -22,13 +23,7 @@ public class JavaStepsDefs {
     @And("I say {string}")
     public void iSay(String message) {
         System.out.println(message);
-
-        String firstName = "John";
-        String lastName = "Doe";
-        String favoriteColor = "Green";
-        System.out.println("Hi, my name is "+firstName + " " + lastName+ ", my favorit color is " + favoriteColor);
     }
-
 
     @Given("I perform actions with {string} and {string}")
     public void iOerformActionsWithAnd(String str1, String str2) {
@@ -144,5 +139,56 @@ public class JavaStepsDefs {
             for (int num : myNums){
                 System.out.println("num: " + num);
         }
+    }
+
+    @Given("I work with maps")
+    public void iWorkWithMaps() {
+        Map<String, String> user = Map.of(
+                "username", "jdoe",
+                "password", "welcome",
+                "email", "john@doe.com"
+        );
+        Map<String, String> admin = Map.of(
+                "username", "admin",
+                "password", "pass1",
+                "email", "admin@doe.com"
+        );
+        System.out.println(user);
+        System.out.println(admin);
+        System.out.println(user.get("username"));
+        System.out.println(user.get("password"));
+        System.out.println(user.get("email"));
+    }
+
+    @Given("I solve coding challenges")
+    public void isolveCodingChallenges() {
+        swap(3, 5);
+        isDivisibleBy3and4(8);
+        isDivisibleBy3and4(9);
+        isDivisibleBy3and4(12);
+        isDivisibleBy3and4(17);
+    }
+    void isDivisibleBy3and4(int num){
+        System.out.println("Is divisible func");
+        if (num % 3 == 0 && num % 4 ==0){
+            System.out.println("Div by 3 and 4");
+        }else if (num % 3 == 0){
+            System.out.println("Div by 3");
+        }else if (num % 4 == 0){
+            System.out.println("Div by 4");
+        }else{
+            System.out.println("Not div by 3 and 4");
+        }
+    }
+
+    void swap(int a, int b){
+        System.out.println("Swap func");
+            System.out.println("a: " +a);
+            System.out.println("b: "+b);
+            int temp=a;
+            a=b;
+            b=temp;
+            System.out.println("a: " +a);
+            System.out.println("b " +b);
     }
 }

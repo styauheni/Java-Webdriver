@@ -7,11 +7,7 @@
       And I print page details in the console
 #      And I go to "google" page
 #      And I go back and forward, then refresh the page
-      And I change resolution to "phone"
-      And I change resolution to "desctop"
-      When I verify email field behavior
       When I fill out required fields
-      And I fill out optional fields
       And I submit the form
-      And I verify that submitted fields saved correctly
-#      And I wait for 3 sec
+      And I ferify required fields
+      And I wait for 3 sec
