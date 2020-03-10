@@ -9,7 +9,7 @@ Feature: Smoke steps
     When I type "Behavior Driven Development" into element with xpath "//input[@name='q']"
     When I click on element using JavaScript with xpath "(//input[@name='btnK'])[1]"
     Then I wait for element with xpath "//*[@id='res']" to be present
-    The I wait for element with xpath "//*[@id='res']" to be present
+#    The I wait for element with xpath "//*[@id='res']" to be present
 #    Then I wait for element with xpath "//*[@id='resres']" to be present
 #    Then element with xpath "//*[@id='res']" should contain text "Cucumber"
 #    Then element with xpath "//*[@id='res']" should have text as "<Cucumber>"
