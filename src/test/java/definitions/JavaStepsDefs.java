@@ -5,6 +5,7 @@ import cucumber.api.java.en.Given;
 
 import java.sql.SQLOutput;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,12 +18,16 @@ public class JavaStepsDefs {
         var1 = "Say Hello";
         System.out.println(var1);
 
-
     }
 
     @And("I say {string}")
     public void iSay(String message) {
         System.out.println(message);
+
+        String firstName = "John";
+        String lastName = "Doe";
+        String favoriteColor = "Green";
+        System.out.println("Hi, my name is " + firstName + " " + lastName + ", my favorit color is " + favoriteColor);
     }
 
     @Given("I perform actions with {string} and {string}")
@@ -106,17 +111,17 @@ public class JavaStepsDefs {
     @And("I print if {string} is positive")
     public void iPrintIfIsPositive(String num1) {
         if (0 < Integer.parseInt(num1)) {
-            System.out.println("Number "+num1 +" is positive");
+            System.out.println("Number " + num1 + " is positive");
         } else if (0 > Integer.parseInt(num1)) {
-            System.out.println("Number "+num1 +" is negative");
+            System.out.println("Number " + num1 + " is negative");
         } else {
-            System.out.println(num1 +" is 0");
+            System.out.println(num1 + " is 0");
         }
     }
 
     @Given("I work with arrays")
     public void iWorkWithArrays() {
-        String[] fruits = {"apple","plum","kiwi"};
+        String[] fruits = {"apple", "plum", "kiwi"};
         int[] nums = {5, 2, 3, 2, 5};
 
         System.out.println(fruits[0]);
@@ -126,18 +131,18 @@ public class JavaStepsDefs {
         for (String fruit : fruits) {
             System.out.println(fruit);
         }
-        for (int num : nums){
-            System.out.println("num: " +num);
+        for (int num : nums) {
+            System.out.println("num: " + num);
         }
 
         List<String> myFruits = Arrays.asList("apple", "plum", "kiwi", "orange");
-        for (String fruit : myFruits){
+        for (String fruit : myFruits) {
             System.out.println(fruit);
         }
 
         List<Integer> myNums = Arrays.asList(5, 2, 3, 2, 5);
-            for (int num : myNums){
-                System.out.println("num: " + num);
+        for (int num : myNums) {
+            System.out.println("num: " + num);
         }
     }
 
@@ -158,6 +163,24 @@ public class JavaStepsDefs {
         System.out.println(user.get("username"));
         System.out.println(user.get("password"));
         System.out.println(user.get("email"));
+
+        //Homework day 6
+        Map<String, String> info = Map.of(
+                "firstName", "John",
+                "middleName", "George"
+        );
+//        Map<String, String> info = new LinkedHashMap<>();
+//        Map<String, String> info1 = Map.of(
+//                "temp", "firstName" = info.get("firstName")",
+//                "firstName", "info.get("middleName")",
+//                "middleName", "info.get("temp")"
+//        )
+
+
+//        ,
+//        "middleName" = info.get("firstName")
+//        );
+
     }
 
     @Given("I solve coding challenges")
@@ -167,28 +190,68 @@ public class JavaStepsDefs {
         isDivisibleBy3and4(9);
         isDivisibleBy3and4(12);
         isDivisibleBy3and4(17);
+        alfa();
+        main();
     }
-    void isDivisibleBy3and4(int num){
-        System.out.println("Is divisible func");
-        if (num % 3 == 0 && num % 4 ==0){
+
+    void isDivisibleBy3and4(int num) {
+        System.out.println("Is divisible func. Num: " + num);
+        if (num % 3 == 0 && num % 4 == 0) {
             System.out.println("Div by 3 and 4");
-        }else if (num % 3 == 0){
+        } else if (num % 3 == 0) {
             System.out.println("Div by 3");
-        }else if (num % 4 == 0){
+        } else if (num % 4 == 0) {
             System.out.println("Div by 4");
-        }else{
+        } else {
             System.out.println("Not div by 3 and 4");
         }
     }
 
-    void swap(int a, int b){
+    void swap(int a, int b) {
         System.out.println("Swap func");
-            System.out.println("a: " +a);
-            System.out.println("b: "+b);
-            int temp=a;
-            a=b;
-            b=temp;
-            System.out.println("a: " +a);
-            System.out.println("b " +b);
+        System.out.println("a: " + a);
+        System.out.println("b: " + b);
+        int temp = a;
+        a = b;
+        b = temp;
+        System.out.println("a: " + a);
+        System.out.println("b " + b);
     }
+    public void alfa(){
+        char   symb = 'a';
+        for (;;){
+            System.out.print(symb);
+            if (symb == 'z') {
+                break;
+            }
+            symb ++;
+        }
+
+    }
+
+
+    public void main() {
+        String ipOld = "10.1.1.1";
+        String ipNew = ipOld.replace("1", "2");
+        System.out.println(ipNew);
+
+        String java = "something.";
+        String mmm = java.replaceAll("\\.", "");
+    }
+
+
+
+    @Given("for tonight")
+    public boolean forTonight() {
+        int num = 15;
+        if((num % 10 == 0)||(num % 2 != 0 && num % 3 == 0)){
+            System.out.println("done!");
+            return true;
+        } else {
+            System.out.println("try again");
+            return false;
+        }
+
+    }
+
 }

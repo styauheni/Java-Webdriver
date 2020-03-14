@@ -38,5 +38,10 @@
     Scenario: Challenges
       Given I solve coding challenges
 
+    @java5
+    Scenario: new
+      Given for tonight
+
+
 
 
