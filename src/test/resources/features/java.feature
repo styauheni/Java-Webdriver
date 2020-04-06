@@ -42,6 +42,11 @@
     Scenario: new
       Given for tonight
 
+    @java6
+    Scenario: Fizz Buzz
+      Given I print line uo to 20 elements
+
+
 
 
 

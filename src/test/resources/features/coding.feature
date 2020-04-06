@@ -12,3 +12,15 @@
 
     Scenario: map changes
       Given I play with map
+
+    @practics
+    Scenario: practics wit waits
+      Given I open Swisscows
+      Then the search field should be present
+      When search for "Behavior Driven Development"
+      Then result should contain text "Cucumber"
+
+    @homework11
+    Scenario: challenges
+      Given I do practics
+
