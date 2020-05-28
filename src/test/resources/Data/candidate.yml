@@ -1,0 +1,10 @@
+firstName: John
+middleName: Pierpont
+lastName: Doe
+email: jpdoe@example.com
+password: welcome
+summary: Just the best candidate you've ever seen
+address: 888 Rio Dr
+city: San Diego
+state: CA
+zip: "92000"

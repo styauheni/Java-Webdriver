@@ -17,16 +17,34 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.yaml.snakeyaml.Yaml;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class TestContext {
 
     private static WebDriver driver;
+
+    private static String timestamp;
+
+    public static void setTimestamp(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("+yyyy-MM-dd-h:mm:sss");
+        timestamp = dateFormat.format(new Date());
+    }
+
+    public static String getTimestamp(){
+        return timestamp;
+    }
 
     public static WebDriver getDriver() {
         return driver;
@@ -48,7 +66,31 @@ public class TestContext {
         return (JavascriptExecutor) getDriver();
     }
 
+    //add timestamp to the title value in yaml file
+    public static Map<String, String> getPosition(String fileName){
+        Map<String, String> position = getData(fileName);
+        String newTitle = position.get("title");
+        newTitle += timestamp;
+        position.put("title", newTitle);
+        return position;
+    }
+
+    // Get data from file:
+    public static Map<String, String> getData(String fileName) {
+        try {
+            String path = System.getProperty("user.dir") + "/src/test/resources/Data/" + fileName + ".yml";
+        File file = new File(path);
+        InputStream stream = new FileInputStream(file);
+        Yaml yaml = new Yaml();
+        return yaml.load(stream);
+        }catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     public static void initialize() {
+        setTimestamp();
         initialize("chrome", false);
     }
 

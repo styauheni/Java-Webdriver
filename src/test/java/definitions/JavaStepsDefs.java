@@ -2,6 +2,10 @@ package definitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import pages.Cat;
+import pages.Dog;
+import pages.Parrot;
+import pages.Pet;
 
 import java.sql.SQLOutput;
 import java.util.Arrays;
@@ -185,14 +189,30 @@ public class JavaStepsDefs {
 
     @Given("I solve coding challenges")
     public void isolveCodingChallenges() {
-        swap(3, 5);
-        isDivisibleBy3and4(8);
-        isDivisibleBy3and4(9);
-        isDivisibleBy3and4(12);
-        isDivisibleBy3and4(17);
-        alfa();
-        main();
+//        swap(3, 5);
+//        isDivisibleBy3and4(8);
+//        isDivisibleBy3and4(9);
+//        isDivisibleBy3and4(12);
+//        isDivisibleBy3and4(17);
+//        alfa();
+//        main();
+//        System.out.println(reverse3rd("WebDriver"));
+
     }
+
+    String reverse3rd(String str) {
+        String reversed = " ";
+        int j = 1;
+        for (int i = str.length() - 1; i >= 0; i--) {
+            if (j % 3 == 0) {
+
+                reversed += str.charAt(i);
+            }
+            j++;
+        }
+        return reversed;
+    }
+
 
     void isDivisibleBy3and4(int num) {
         System.out.println("Is divisible func. Num: " + num);
@@ -204,6 +224,7 @@ public class JavaStepsDefs {
             System.out.println("Div by 4");
         } else {
             System.out.println("Not div by 3 and 4");
+
         }
     }
 
@@ -217,14 +238,15 @@ public class JavaStepsDefs {
         System.out.println("a: " + a);
         System.out.println("b " + b);
     }
-    public void alfa(){
-        char   symb = 'a';
-        for (;;){
+
+    public void alfa() {
+        char symb = 'a';
+        for (; ; ) {
             System.out.print(symb);
             if (symb == 'z') {
                 break;
             }
-            symb ++;
+            symb++;
         }
 
     }
@@ -240,11 +262,9 @@ public class JavaStepsDefs {
     }
 
 
-
-    @Given("for tonight")
-    public boolean forTonight() {
+    boolean isDivisible() {
         int num = 15;
-        if((num % 10 == 0)||(num % 2 != 0 && num % 3 == 0)){
+        if ((num % 10 == 0) || (num % 2 != 0 && num % 3 == 0)) {
             System.out.println("done!");
             return true;
         } else {
@@ -254,18 +274,54 @@ public class JavaStepsDefs {
 
     }
 
-    @Given("I print line uo to {int} elements")
-    public void iPrintLineUoToElements(int myArgument) {
-        for (int i = 1; i <= myArgument; i++){
-            if (i % 3 == 0 && i % 5 == 0){
+    // Print line up to n element
+    void printUpToElement(int myArgument) {
+        for (int i = 1; i <= myArgument; i++) {
+            if (i % 3 == 0 && i % 5 == 0) {
                 System.out.print(" FizzBuzz ");
-            }else if (i % 3 == 0){
+            } else if (i % 3 == 0) {
                 System.out.print(" Fizz ");
-            }else if (i % 5 == 0){
+            } else if (i % 5 == 0) {
                 System.out.print(" Buzz ");
-            }else {
+            } else {
                 System.out.print(i + " ");
             }
         }
     }
+
+
+    @Given("I run classes")
+    public void iRunClasses() {
+        Pet tom = new Cat("Tom");
+//        tom.setName("Tom");
+        System.out.println("Cat's name: " + tom.getName());
+        tom.walk();
+        tom.eat("fish");
+        tom.speak();
+        tom.setName("Jerry");
+        tom.walk();
+        tom.eat("fish");
+        tom.speak();
+
+        Pet puff = new Dog();
+        puff.eat("meat");
+        puff.walk();
+        puff.speak();
+        puff.setName("Puff");
+        System.out.println("Now it is " + puff.getName());
+        puff.eat("meat");
+        puff.walk();
+        puff.speak();
+
+        Pet flint = new Parrot();
+        flint.eat("nuts");
+        flint.walk();
+        flint.speak();
+        flint.setName("Flint");
+        System.out.println("I named it " + flint.getName());
+        flint.eat("nuts and seeds");
+        flint.walk();
+        flint.speak();
+    }
 }
+

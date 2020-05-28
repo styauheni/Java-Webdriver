@@ -38,13 +38,10 @@
     Scenario: Challenges
       Given I solve coding challenges
 
-    @java5
-    Scenario: new
-      Given for tonight
 
-    @java6
-    Scenario: Fizz Buzz
-      Given I print line uo to 20 elements
+    @java5
+    Scenario: Classes
+      Given I run classes
 
 
 
