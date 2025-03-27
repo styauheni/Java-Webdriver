@@ -3,13 +3,11 @@ package definitions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import pages.Cat;
-import pages.Dog;
+import pages.Doggy;
 import pages.Parrot;
 import pages.Pet;
 
-import java.sql.SQLOutput;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -303,7 +301,7 @@ public class JavaStepsDefs {
         tom.eat("fish");
         tom.speak();
 
-        Pet puff = new Dog();
+        Pet puff = new Doggy();
         puff.eat("meat");
         puff.walk();
         puff.speak();

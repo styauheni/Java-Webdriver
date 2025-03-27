@@ -1,6 +1,6 @@
 package pages;
 
-public class Dog extends Pet {
+public class Doggy extends Pet {
 
 //    public Dog(String value){
 //        name = value;
